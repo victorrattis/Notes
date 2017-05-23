@@ -1,0 +1,12 @@
+
+Initial Tasks to do:
+ ☐ Create two classes of Model;
+ ☐ CRUD to the model classes, persisting in SQLite Database;
+ ☐ Consume a Web Service REST (JSON) to the model classes;
+ ☐ Create screen to the landscape and portrait orientations;
+ ☐ Use fragment in activities;
+ ☐ Use a activity with pageView - Slider, Spinner or Tabs;
+ ☐ Use more than one language on project;
+ ☐ Use Map feature in a screen(activity);
+ ☐ Use Tollbar;
+ ☐ Extra: choose an Android feature to use;
