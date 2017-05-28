@@ -8,7 +8,9 @@ import com.vhra.notes.data.NoteContract
 import com.vhra.notes.data.toContentValues
 
 class MainActivity : AppCompatActivity() {
-   override fun onCreate(savedInstanceState: Bundle?) {
+    var mCount = 32
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
@@ -18,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addListView(view: View) {
-        val size = 26//mNoteAdapter?.count ?: 0
-        val note: Note = Note("Note $size", "Description about this note...");
+        val note: Note = Note("Note $mCount", "Description about this note...")
+        mCount++
         contentResolver.insert(NoteContract.Note.CONTENT_URI, note.toContentValues())
     }
 }

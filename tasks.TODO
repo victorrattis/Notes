@@ -14,4 +14,13 @@ Initial Tasks to do:
 
 TODO:
  ✔ Create a listView with CardView, using basic material Style; @done
- ☐ Use fragment to show the list of notes;
+ ✔ Use fragment to show the list of notes; @done
+ ✔ Use RecyclerView @done
+
+
+Time to lauch:
+adb shell am start -S -W com.vhra.notes/.MainActivity
+Activity: com.vhra.notes/.MainActivity
+ThisTime: 376
+TotalTime: 376
+WaitTime: 396

@@ -8,9 +8,10 @@
     android:background="#ccc">
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:onClick="addListView"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addListView"
+        android:text="Add Note"/>
 
     <fragment android:name="com.vhra.notes.ui.NotesFragment"
         android:id="@+id/notes_fragment"
