@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import com.vhra.notes.data.Note
 import com.vhra.notes.data.NoteContract
+import com.vhra.notes.data.toContentValues
 
 class MainActivity : AppCompatActivity(), android.app.LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): android.content.Loader<Cursor>? {
@@ -44,11 +46,8 @@ class MainActivity : AppCompatActivity(), android.app.LoaderManager.LoaderCallba
     }
 
     fun addListView(view: View) {
-        val size = mNoteAdpater?.count ?: 0
-
-        val values = ContentValues()
-        values.put(NoteContract.Note.Key.TITLE, "Item $size")
-        values.put(NoteContract.Note.Key.BODY, "Description about this note...")
-        contentResolver.insert(NoteContract.Note.CONTENT_URI, values)
+        val size = 26//mNoteAdpater?.count ?: 0
+        val note: Note = Note("Note $size", "Description about this note...");
+        contentResolver.insert(NoteContract.Note.CONTENT_URI, note.toContentValues())
     }
 }
