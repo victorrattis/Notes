@@ -12,11 +12,9 @@
         android:layout_height="30dp"
         android:onClick="addListView"/>
 
-    <ListView
-        android:id="@+id/notesView"
+    <fragment android:name="com.vhra.notes.ui.NotesFragment"
+        android:id="@+id/notes_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
