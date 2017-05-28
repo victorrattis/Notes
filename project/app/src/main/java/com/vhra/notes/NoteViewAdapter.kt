@@ -13,7 +13,7 @@ import com.vhra.notes.data.NoteContract
 class NoteViewAdapter(context: Context, cursor: Cursor?, flags: Int) :
         CursorAdapter(context, cursor, flags) {
     override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
-        return LayoutInflater.from(context).inflate(R.layout.note_item_layout, parent, false)
+        return LayoutInflater.from(context).inflate(R.layout.note_layout, parent, false)
     }
 
     override fun bindView(view: View?, context: Context?, cursor: Cursor?) {

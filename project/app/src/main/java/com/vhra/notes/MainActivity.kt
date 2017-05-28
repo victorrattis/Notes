@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity(), android.app.LoaderManager.LoaderCallba
 
     var mNoteAdpater: NoteViewAdapter? = null
 
-    var mCount = 15
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,13 +44,11 @@ class MainActivity : AppCompatActivity(), android.app.LoaderManager.LoaderCallba
     }
 
     fun addListView(view: View) {
-//        mNoteAdpater?.notifyDataSetChanged()
-//        mNoteAdpater?.notifyDataSetInvalidated()
+        val size = mNoteAdpater?.count ?: 0
 
         val values = ContentValues()
-        values.put(NoteContract.Note.Key.TITLE, "Item $mCount")
-        mCount++
+        values.put(NoteContract.Note.Key.TITLE, "Item $size")
         values.put(NoteContract.Note.Key.BODY, "Description about this note...")
-        var inserted = contentResolver.insert(NoteContract.Note.CONTENT_URI, values)
+        contentResolver.insert(NoteContract.Note.CONTENT_URI, values)
     }
 }

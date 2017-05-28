@@ -13,4 +13,5 @@ Initial Tasks to do:
 
 
 TODO:
- ☐ Create a listView with CardView, using basic material Style;
+ ✔ Create a listView with CardView, using basic material Style; @done
+ ☐ Use fragment to show the list of notes;

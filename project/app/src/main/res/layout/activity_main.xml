@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vhra.notes.MainActivity">
+    tools:context="com.vhra.notes.MainActivity"
+    android:background="#ccc">
 
     <Button
         android:layout_width="100dp"
@@ -14,6 +15,8 @@
     <ListView
         android:id="@+id/notesView"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
 
 </RelativeLayout>
