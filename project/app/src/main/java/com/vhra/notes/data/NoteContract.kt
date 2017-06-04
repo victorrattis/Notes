@@ -21,7 +21,7 @@ object NoteContract {
 
         object Key {
             val _ID = BaseColumns._ID
-            val TITLE = "TITLE"
+            val TITLE = "title"
             val BODY = "body"
             val DATABASE_ID = "dbid"
         }

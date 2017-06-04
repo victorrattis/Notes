@@ -1,10 +1,10 @@
 
 Initial Tasks to do:
- ☐ Create two classes of Model;
- ☐ CRUD to the model classes, persisting in SQLite Database;
- ☐ Consume a Web Service REST (JSON) to the model classes;
+ ✔ Create two classes of Model; @done
+ ✔ CRUD to the model classes, persisting in SQLite Database; @done
+ ✔ Consume a Web Service REST (JSON) to the model classes; @done
  ☐ Create screen to the landscape and portrait orientations;
- ☐ Use fragment in activities;
+ ✔ Use fragment in activities; @done
  ☐ Use a activity with pageView - Slider, Spinner or Tabs;
  ☐ Use more than one language on project;
  ☐ Use Map feature in a screen(activity);
@@ -19,8 +19,8 @@ TODO:
 
 
 Time to lauch:
-adb shell am start -S -W com.vhra.notes/.MainActivity
-Activity: com.vhra.notes/.MainActivity
-ThisTime: 376
-TotalTime: 376
-WaitTime: 396
+adb shell am start -S -W com.vhra.notes/.ui.MainActivity
+Activity: com.vhra.notes/.ui.MainActivity
+ThisTime: 479
+TotalTime: 479
+WaitTime: 511
