@@ -1,9 +1,9 @@
 
 const express = require('express')
 
-let app = express()
-let port = process.env.PORT || 3000
+const port = process.env.PORT || 3000
 
+let app = express()
 let routers = require('./router/router')
 app.use('/', routers)
 

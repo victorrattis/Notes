@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.content.UriMatcher
 import android.database.SQLException
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 
@@ -34,21 +35,22 @@ class NoteProvider : ContentProvider() {
         return true
     }
 
-    override fun insert(uri: Uri?, values: ContentValues?): Uri {
+    override fun insert(uri: Uri?, values: ContentValues?): Uri? {
         val db = mNoteDB?.writableDatabase
         val match: Int = sUriMatcher.match(uri)
-        val insertionUri: Uri?
-        val insertedId: Long
+        var insertionUri: Uri? = null
+        var insertedId: Long = 0
         Log.d("debug", "insert: $uri, match: $match")
 
         when (match) {
             NOTE_LIST -> {
-                insertedId = db!!.insert(NoteContract.Note.TABLE_NAME, null, values)
-
-                insertionUri = if (insertedId > 0) {
-                    NoteContract.Note.buildWithId(insertedId)
-                } else {
-                    throw SQLException("Failed to insert row into $uri")
+                try {
+                    insertedId = db!!.insertOrThrow(NoteContract.Note.TABLE_NAME, null, values)
+                    if (insertedId > 0) {
+                        insertionUri = NoteContract.Note.buildWithId(insertedId)
+                    }
+                }catch (e: SQLiteConstraintException){
+                    Log.d("debug", e.message)
                 }
             }
             else -> throw UnsupportedOperationException("Unknown uri: $uri")

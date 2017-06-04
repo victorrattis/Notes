@@ -10,18 +10,32 @@ let notes = [
     {_id: 7, dbid: 2, title: "note 2.8", body: "This note was created in server"},
     {_id: 8, dbid: 2, title: "note 2.9", body: "This note was created in server"},
     {_id: 9, dbid: 2, title: "note 2.10", body: "This note was created in server"},
-    {_id: 10, dbid: 2, title: "note 2.11", body: "This note was created in server"}
+    {_id: 10, dbid: 2, title: "note 2.11", body: "This note was created in server"},
+    {_id: 11, dbid: 2, title: "note 2.12", body: "This note was created in server"},
+    {_id: 12, dbid: 2, title: "note 2.13", body: "This note was created in server"}
 ]
 
 module.exports.findAll = (req, res, next) => {
-    res.json(notes)
+    res.json({
+        status: "ok",
+        payload: {
+            notes: notes
+        }
+    })
     next()
 }
 
 module.exports.findById = (req, res, next) => {
     let id = req.params.id
     let note = notes[id]
-    if (note != undefined) res.json(note)
+    if (note != undefined){
+        res.json({
+            status: "ok",
+            payload: {
+                note: note
+            }
+        })
+    }
     else res.send('without note')
     next()
 }

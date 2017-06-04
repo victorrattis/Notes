@@ -7,15 +7,26 @@
     tools:context="com.vhra.notes.MainActivity"
     android:background="#ccc">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="addListView"
-        android:text="Add Note"/>
-
     <fragment android:name="com.vhra.notes.ui.NotesFragment"
         android:id="@+id/notes_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addListView"
+            android:id="@+id/bAdd"
+            android:text="Add Note"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="fetchServer"
+            android:text="Fetch Server"/>
+    </LinearLayout>
 </RelativeLayout>
