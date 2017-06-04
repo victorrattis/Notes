@@ -44,8 +44,8 @@ class NoteViewAdapter(context: Context, cursor: Cursor?) :
 //    }
 //
 //    override fun bindView(view: View?, context: Context?, cursor: Cursor?) {
-//        val titleTextView = view?.findViewById(R.id.noteItem) as TextView
-//        val bodyTextView = view?.findViewById(R.id.body) as TextView
+//        val titleTextView = view?.findViewById(R.ID.noteItem) as TextView
+//        val bodyTextView = view?.findViewById(R.ID.body) as TextView
 //
 //        val TITLE_COL_INDEX = cursor?.getColumnIndex(NoteContract.Note.Key.TITLE) as Int
 //        val taskTitle = cursor?.getString(TITLE_COL_INDEX) ?: ""

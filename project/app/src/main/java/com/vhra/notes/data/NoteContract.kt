@@ -14,14 +14,16 @@ object NoteContract {
     object Note {
         val TABLE_NAME = "notes"
         val CONTENT_URI: Uri = BASE_CONTENT_URI.buildUpon().appendPath(TABLE_NAME).build()
+        val NOTES_DATABASE_ID = 0
 
         val CONTENT_TYPE = "$CURSOR_DIR_BASE_TYPE/$CONTENT_AUTHORITY/$TABLE_NAME"
         val CONTENT_ITEM_TYPE = "$CURSOR_ITEM_BASE_TYPE/$CONTENT_AUTHORITY/$TABLE_NAME"
 
         object Key {
             val _ID = BaseColumns._ID
-            val TITLE = "title"
+            val TITLE = "TITLE"
             val BODY = "body"
+            val DATABASE_ID = "dbid"
         }
 
         fun buildWithId(id: Long): Uri {

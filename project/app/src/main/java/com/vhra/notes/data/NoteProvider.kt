@@ -26,8 +26,8 @@ class NoteProvider : ContentProvider() {
         }
 
         val sUriMatcher: UriMatcher = createUriMatcher()
-        var mNoteDB: NoteDB? = null
     }
+    var mNoteDB: NoteDB? = null
 
     override fun onCreate(): Boolean {
         mNoteDB = NoteDB(context)

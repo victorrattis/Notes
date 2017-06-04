@@ -8,7 +8,9 @@ import com.vhra.notes.data.NoteContract
 import com.vhra.notes.data.toContentValues
 
 class MainActivity : AppCompatActivity() {
-    var mCount = 32
+    var mCount: Int  = 30
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addListView(view: View) {
-        val note: Note = Note("Note $mCount", "Description about this note...")
+        val note: Note = Note(mCount, 0, "Note $mCount", "Description about this note...")
         mCount++
         contentResolver.insert(NoteContract.Note.CONTENT_URI, note.toContentValues())
     }
