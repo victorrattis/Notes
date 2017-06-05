@@ -7,14 +7,19 @@ import com.vhra.notes.data.NoteContract
 import com.vhra.notes.data.toContentValues
 import org.json.JSONException
 import org.json.JSONObject
+import android.content.Context
+import com.vhra.notes.util.NotePreferences
 
-class SyncDataProcessor(resolver: ContentResolver?) : Processor {
-    private val mResolver: ContentResolver? = resolver
+
+class SyncDataProcessor(context: Context?) : Processor {
+    private val mContext: Context? = context
+    private val mResolver: ContentResolver? = context?.contentResolver
 
     override fun process(response: String?) {
         val json = JSONObject(response)
         val payload = json.getJSONObject("payload")
         val jsonArray = payload.getJSONArray("notes")
+        val syncDate = json.getString("syncDate")
         for (i in 0..jsonArray.length()-1) {
             try {
                 val oneObject = jsonArray.getJSONObject(i)
@@ -30,5 +35,8 @@ class SyncDataProcessor(resolver: ContentResolver?) : Processor {
                 Log.e("debug", e.message)
             }
         }
+
+        val preferences = NotePreferences(mContext)
+        preferences.setSyncDate(syncDate.toLong())
     }
 }

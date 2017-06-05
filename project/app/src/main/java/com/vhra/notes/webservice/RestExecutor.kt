@@ -1,9 +1,9 @@
 package com.vhra.notes.webservice
 
-import android.content.ContentResolver
 import android.content.Context
 import android.util.Log
 import com.vhra.notes.processor.Processor
+import com.vhra.notes.util.NotePreferences
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -31,7 +31,9 @@ class RestExecutor(context: Context?) : Executor {
 
     @Throws(Exception::class)
     fun openConnection(url: String, method: String, doOutput: Boolean): HttpURLConnection {
-        val urlCon = URL(url)
+        val preferences = NotePreferences(mContext)
+
+        val urlCon = URL("$url?date=${preferences.getSyncDate()}" )
         val connection = urlCon.openConnection() as HttpURLConnection
         connection.readTimeout = 15000
         connection.connectTimeout = 15000

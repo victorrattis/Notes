@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 let notesRouters = Router();
 notesRouters.route('/notes')
-    .get(notesController.findAll)
+    .get(notesController.findNotes)
 
 notesRouters.route('/notes/:id')
     .get(notesController.findById)

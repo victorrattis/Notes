@@ -25,7 +25,7 @@ class SyncService : IntentService(TAG) {
         Log.d("debug", "SyncService: $action")
 
         if (SYNC_DATA_ACTION == action) {
-            val syncDataProcess: SyncDataProcessor = SyncDataProcessor(contentResolver)
+            val syncDataProcess: SyncDataProcessor = SyncDataProcessor(applicationContext)
             mExecutor?.execute("http://192.168.25.94:3000/1.0/notes", syncDataProcess)
         }
     }
