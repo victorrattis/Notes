@@ -28,14 +28,7 @@ class NoteDB(context: Context?) :
                 count INT
             );""")
 
-        db?.execSQL("""
-            CREATE TABLE $NOTES_TABLE_NAME (
-                $ID INTEGER,
-                $DATABASE_ID INTEGER NOT NULL,
-                $TITLE TEXT,
-                $BODY TEXT,
-                PRIMARY KEY ($ID, $DATABASE_ID)
-            ); """)
+        db?.execSQL(NoteSchema.TABLE_CREATE)
 
         db?.execSQL("""
              INSERT INTO auto_increment VALUES ($NOTES_DATABASE_ID, 0); """)
@@ -56,19 +49,8 @@ class NoteDB(context: Context?) :
                     WHERE ROWID = new.ROWID;
             END; """)
 
-        // Tag table
         db?.execSQL(TagSchema.TABLE_CREATE)
-
-        // Tag-Note table
-        db?.execSQL("""
-            CREATE TABLE tag_note(
-                note_id INTEGER,
-                dbid INTEGER,
-                tag_id INTEGER,
-                FOREIGN KEY(note_id) REFERENCES notes(_id),
-                FOREIGN KEY(dbid) REFERENCES notes(dbid),
-                FOREIGN KEY(tag_id) REFERENCES tags(_id)
-            ); """)
+        db?.execSQL(TagNoteSchema.TABLE_CREATE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

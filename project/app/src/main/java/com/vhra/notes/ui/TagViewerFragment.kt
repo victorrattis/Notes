@@ -20,16 +20,15 @@ class TagViewerFragment : Fragment() {
         val view: View? = inflater?.inflate(R.layout.tags_viewer, container, false)
 
         val tagViewer = view?.findViewById(R.id.tagsViewer) as RecyclerView?
-//        val adapter: TagViewerAdapter = TagViewerAdapter(activity)
         val adapter = TagViewerCursosAdapter(activity, null)
 
         tagViewer?.adapter = adapter
         tagViewer?.layoutManager = LinearLayoutManager(
                 activity, LinearLayoutManager.HORIZONTAL, false)
 
-//        adapter.tagClickListener = {
-//            Log.d("debug", "onItemClick: $it")
-//        }
+        adapter.onClickListener = {
+            Log.d("debug", "onItemClick: $it")
+        }
 
         val tagDao: TagDao = TagDao(NoteDB(activity).writableDatabase)
         adapter.changeCursor(tagDao.getAll())

@@ -1,6 +1,6 @@
 package com.vhra.notes.data
 
-interface TagSchema {
+class TagSchema {
     companion object {
         val ID = "_id"
         val TABLE_NAME = "tags"
@@ -13,6 +13,6 @@ interface TagSchema {
                 $ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 $TAG_NAME TEXT UNIQUE NOT NULL
             );
-            """
+        """
     }
 }
