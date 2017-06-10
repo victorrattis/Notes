@@ -1,11 +1,12 @@
-package com.vhra.notes.adapter
+package com.vhra.notes.ui.adapter
 
 import android.database.Cursor
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
 
 // TODO: Refactor this class
-abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?) : RecyclerView.Adapter<T>() {
+abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?)
+        : RecyclerView.Adapter<T>() {
 
     protected var mDataValid: Boolean = false
     private var mCursor: Cursor? = null

@@ -1,13 +1,11 @@
-package com.vhra.notes.adapter
+package com.vhra.notes.ui.adapter
 
 import android.content.Context
 import android.database.Cursor
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CursorAdapter
 import android.widget.TextView
 import com.vhra.notes.R
 import com.vhra.notes.data.NoteContract
@@ -19,7 +17,7 @@ class NoteViewAdapter(context: Context, cursor: Cursor?) :
 
     override fun onCreateViewHolder(parent: ViewGroup?, p1: Int): SimpleViewHolder {
         val view = LayoutInflater.from(mContext)
-                .inflate(R.layout.note_layout, parent, false)
+                .inflate(R.layout.note_item, parent, false)
         return SimpleViewHolder(view)
     }
 
@@ -36,7 +34,7 @@ class NoteViewAdapter(context: Context, cursor: Cursor?) :
 
 
 //    override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
-//        return LayoutInflater.from(context).inflate(R.layout.note_layout, parent, false)
+//        return LayoutInflater.from(context).inflate(R.layout.note_item, parent, false)
 //    }
 
 //    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {

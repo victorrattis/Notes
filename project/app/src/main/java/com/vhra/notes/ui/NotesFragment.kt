@@ -7,13 +7,12 @@ import android.database.Cursor
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.vhra.notes.data.NoteContract
-import com.vhra.notes.adapter.NoteViewAdapter
+import com.vhra.notes.ui.adapter.NoteViewAdapter
 import com.vhra.notes.R
 
 class NotesFragment : Fragment(), LoaderCallbacks<Cursor> {
@@ -37,13 +36,14 @@ class NotesFragment : Fragment(), LoaderCallbacks<Cursor> {
 
     override fun onCreateView(
             inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View? = inflater?.inflate(R.layout.fragment_note_list, container, false)
+        val view: View? = inflater?.inflate(R.layout.note_board, container, false)
 
         mNotesView = view?.findViewById(R.id.notesView) as RecyclerView?
 
         mNoteAdapter = NoteViewAdapter(activity, null)
         mNotesView?.adapter = mNoteAdapter
-        mNotesView?.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        mNotesView?.layoutManager = LinearLayoutManager(
+                activity, LinearLayoutManager.VERTICAL, false)
 //        mNotesView?.layoutManager = StaggeredGridLayoutManager(3, 1)
 
         loaderManager.initLoader(0, null, this)
