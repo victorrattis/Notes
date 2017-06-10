@@ -19,6 +19,8 @@ class NoteDB(context: Context?) :
     val TITLE = NoteContract.Note.Key.TITLE
     val BODY = NoteContract.Note.Key.BODY
 
+    val TAGS_TABLE_NAME = NoteContract.TAG.TABLE_NAME
+
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("""
              CREATE TABLE auto_increment (
@@ -53,6 +55,20 @@ class NoteDB(context: Context?) :
                         WHERE $DATABASE_ID = 0)
                     WHERE ROWID = new.ROWID;
             END; """)
+
+        // Tag table
+        db?.execSQL(TagSchema.TABLE_CREATE)
+
+        // Tag-Note table
+        db?.execSQL("""
+            CREATE TABLE tag_note(
+                note_id INTEGER,
+                dbid INTEGER,
+                tag_id INTEGER,
+                FOREIGN KEY(note_id) REFERENCES notes(_id),
+                FOREIGN KEY(dbid) REFERENCES notes(dbid),
+                FOREIGN KEY(tag_id) REFERENCES tags(_id)
+            ); """)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

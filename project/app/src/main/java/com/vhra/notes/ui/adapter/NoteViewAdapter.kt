@@ -32,34 +32,6 @@ class NoteViewAdapter(context: Context, cursor: Cursor?) :
         holder.bodyTextView?.text = noteBody
     }
 
-
-//    override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
-//        return LayoutInflater.from(context).inflate(R.layout.note_item, parent, false)
-//    }
-
-//    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
-//        return super.getDropDownView(position, convertView, parent)
-//    }
-//
-//    override fun bindView(view: View?, context: Context?, cursor: Cursor?) {
-//        val titleTextView = view?.findViewById(R.ID.noteItem) as TextView
-//        val bodyTextView = view?.findViewById(R.ID.body) as TextView
-//
-//        val TITLE_COL_INDEX = cursor?.getColumnIndex(NoteContract.Note.Key.TITLE) as Int
-//        val taskTitle = cursor?.getString(TITLE_COL_INDEX) ?: ""
-//
-//        val BODY_COL_INDEX = cursor?.getColumnIndex(NoteContract.Note.Key.BODY) as Int
-//        val noteBody = cursor?.getString(BODY_COL_INDEX) ?: ""
-//
-//        titleTextView.text = taskTitle
-//        bodyTextView.text = noteBody
-//    }
-//
-//    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-//        Log.d("debug", "getView: $position")
-//        return super.getView(position, convertView, parent)
-//    }
-
     inner class SimpleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         public var titleTextView: TextView? = null
         public var bodyTextView: TextView? = null

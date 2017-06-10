@@ -34,7 +34,8 @@ class TagViewerAdapter(context: Context)
         return 10
     }
 
-    inner class TagViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    inner class TagViewHolder(itemView: View?)
+            : RecyclerView.ViewHolder(itemView) {
         var view: View? = itemView
         var tagNameView: TextView? = null
 

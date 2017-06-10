@@ -34,4 +34,13 @@ object NoteContract {
             return ContentUris.parseId(uri)
         }
     }
+
+    object TAG {
+        val TABLE_NAME = "tags"
+
+        object Key {
+            val _ID = BaseColumns._ID
+            val NAME = "name"
+        }
+    }
 }

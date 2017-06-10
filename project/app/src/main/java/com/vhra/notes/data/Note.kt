@@ -7,7 +7,8 @@ data class Note(
     val _id: Int = -1,
     val databaseId: Int,
     val title: String,
-    val body: String
+    val body: String,
+    val tags: List<String>? = arrayListOf()
 )
 
 fun Note.toContentValues(): ContentValues {
