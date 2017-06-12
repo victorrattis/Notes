@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/note_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FullWidthEditText"
+        android:inputType="text"
+        android:hint="@string/note_title"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <EditText
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:hint="tag"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <fragment
+            android:id="@+id/tag_viewer_fragment"
+            android:name="com.vhra.notes.ui.TagViewerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/note_body"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/FullWidthEditText"
+        android:inputType="textMultiLine|textAutoCorrect"
+        android:hint="@string/note_body" />
+</LinearLayout>

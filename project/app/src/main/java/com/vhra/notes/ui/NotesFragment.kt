@@ -2,11 +2,14 @@ package com.vhra.notes.ui
 
 import android.app.Fragment
 import android.app.LoaderManager.LoaderCallbacks
+import android.content.Context
 import android.content.CursorLoader
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +23,10 @@ class NotesFragment : Fragment(), LoaderCallbacks<Cursor> {
         return CursorLoader(activity.applicationContext,
                 NoteContract.Note.CONTENT_URI,
                 null, null, null, null)
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
     }
 
     override fun onLoadFinished(loader: android.content.Loader<Cursor>?, data: Cursor?) {
@@ -45,6 +52,14 @@ class NotesFragment : Fragment(), LoaderCallbacks<Cursor> {
         mNotesView?.layoutManager = LinearLayoutManager(
                 activity, LinearLayoutManager.VERTICAL, false)
 //        mNotesView?.layoutManager = StaggeredGridLayoutManager(3, 1)
+
+        mNoteAdapter?.onClickListener = {
+            noteId: Int, dbId: Int ->
+                val intent = Intent(activity, NoteEditorActivity::class.java)
+                intent.putExtra("note-id", noteId)
+                intent.putExtra("database-id", dbId)
+                activity.startActivity(intent)
+            }
 
         loaderManager.initLoader(0, null, this)
         return view as View

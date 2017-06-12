@@ -10,7 +10,7 @@ class Database(context: Context?) {
     private var tagDao: TagDao? = null
 
     fun open() {
-        mDbHelper = NoteDB(mContext)
+        mDbHelper = NoteDatabase(mContext)
         val database = mDbHelper?.writableDatabase
         tagDao = TagDao(database)
     }

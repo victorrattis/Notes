@@ -4,8 +4,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class NoteDB(context: Context?) :
-        SQLiteOpenHelper(context, NoteDB.DATABASE_NAME, null, NoteDB.DATABASE_VERSION) {
+class NoteDatabase(context: Context?) :
+        SQLiteOpenHelper(context, NoteDatabase.DATABASE_NAME, null, NoteDatabase.DATABASE_VERSION) {
 
     companion object {
         val DATABASE_NAME = "note.db"

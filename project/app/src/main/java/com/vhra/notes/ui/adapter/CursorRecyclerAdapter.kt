@@ -20,7 +20,7 @@ abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?)
         val cursorPresent = cursor != null
         mCursor = cursor
         mDataValid = cursorPresent
-        mRowIDColumn = if (cursorPresent) cursor!!.getColumnIndexOrThrow("_id") else -1
+        mRowIDColumn = cursor?.getColumnIndexOrThrow("_id") ?: -1
         setHasStableIds(true)
     }
 
@@ -38,11 +38,7 @@ abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?)
     abstract fun onBindViewHolder(holder: T, cursor: Cursor?)
 
     override fun getItemCount(): Int {
-        if (mDataValid && mCursor != null) {
-            return mCursor!!.count
-        } else {
-            return 0
-        }
+        return mCursor?.count ?: 0
     }
 
     override fun getItemId(position: Int): Long {
@@ -57,28 +53,12 @@ abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?)
         }
     }
 
-    /**
-     * Change the underlying cursor to a new cursor. If there is an existing cursor it will be
-     * closed.
-
-     * @param cursor The new cursor to be used
-     */
     fun changeCursor(cursor: Cursor?) {
         val old = swapCursor(cursor)
         old?.close()
     }
 
-    /**
-     * Swap in a new Cursor, returning the old Cursor.  Unlike
-     * [.changeCursor], the returned old Cursor is *not*
-     * closed.
 
-     * @param newCursor The new cursor to be used.
-     * *
-     * @return Returns the previously set Cursor, or null if there wasa not one.
-     * * If the given new Cursor is the same instance is the previously set
-     * * Cursor, null is also returned.
-     */
     fun swapCursor(newCursor: Cursor?): Cursor? {
         if (newCursor === mCursor) {
             return null
@@ -99,17 +79,6 @@ abstract class CursorRecyclerAdapter<T : ViewHolder>(cursor: Cursor?)
         return oldCursor
     }
 
-    /**
-     *
-     * Converts the cursor into a CharSequence. Subclasses should override this
-     * method to convert their results. The default implementation returns an
-     * empty String for null values or the default String representation of
-     * the value.
-
-     * @param cursor the cursor to convert to a CharSequence
-     * *
-     * @return a CharSequence representing the value
-     */
     fun convertToString(cursor: Cursor?): CharSequence {
         return cursor?.toString() ?: ""
     }

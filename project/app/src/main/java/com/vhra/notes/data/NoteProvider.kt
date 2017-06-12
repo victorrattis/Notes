@@ -5,7 +5,6 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.content.UriMatcher
-import android.database.SQLException
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
@@ -28,10 +27,10 @@ class NoteProvider : ContentProvider() {
 
         val sUriMatcher: UriMatcher = createUriMatcher()
     }
-    var mNoteDB: NoteDB? = null
+    var mNoteDB: NoteDatabase? = null
 
     override fun onCreate(): Boolean {
-        mNoteDB = NoteDB(context)
+        mNoteDB = NoteDatabase(context)
         return true
     }
 
