@@ -1,0 +1,124 @@
+
+
+-- Node: {
+--     _id: 0,
+--     dbid: 0,
+--     title: "",
+--     body: "",
+--     tags: [],
+--     version: 1,
+--     created: "",
+--     updated: ""
+-- }
+
+
+CREATE TABLE auto_increment (
+   dbid INT,
+   count INT
+);
+
+CREATE TABLE notes (
+   _id INTEGER,
+   dbid INTEGER NOT NULL,
+   title TEXT,
+   body TEXT,
+   PRIMARY KEY (_id, dbid)
+);
+
+INSERT INTO auto_increment VALUES (0, 0);
+
+CREATE TABLE tags(
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE tag_notes(
+    note_id INTEGER,
+    dbid INTEGER,
+    tag_id INTEGER,
+    FOREIGN KEY(note_id) REFERENCES notes(_id),
+    FOREIGN KEY(dbid) REFERENCES notes(dbid),
+    FOREIGN KEY(tag_id) REFERENCES tags(_id)
+);
+
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 1', "Note 1 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 2', "Note 2 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 3', "Note 3 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 4', "Note 4 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 5', "Note 5 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 6', "Note 6 description");
+INSERT INTO notes(dbid, title, body) VALUES(0, 'Note 7', "Note 7 description");
+SELECT * FROM notes;
+
+INSERT INTO tags(name) VALUES ('tag');
+INSERT INTO tags(name) VALUES ('inbox');
+INSERT INTO tags(name) VALUES ('notes');
+INSERT INTO tags(name) VALUES ('project');
+INSERT INTO tags(name) VALUES ('android');
+INSERT INTO tags(name) VALUES ('study');
+INSERT INTO tags(name) VALUES ('do');
+INSERT INTO tags(name) VALUES ('done');
+SELECT * FROM tags;
+
+INSERT INTO tag_notes(note_id, dbid, tag_id) VALUES(1, 0, 1);
+INSERT INTO tag_notes(note_id, dbid, tag_id) VALUES(1, 0, 2);
+INSERT INTO tag_notes(note_id, dbid, tag_id) VALUES(1, 0, 3);
+INSERT INTO tag_notes(note_id, dbid, tag_id) VALUES(2, 0, 3);
+SELECT * FROM tag_notes;
+
+-- List all tags
+SELECT * FROM tags;
+
+-- List all tags that exists in notes
+SELECT tags.*, notes.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid;
+
+SELECT tags.*, notes.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid;
+
+
+-- List tags of a note
+SELECT tags.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid
+    WHERE notes._id IN (2);
+
+--
+CREATE VIEW tagsByNotes AS
+  SELECT tags.*
+  FROM tag_notes
+  INNER JOIN tags ON tag_notes.tag_id = tags._id
+  INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid;
+
+SELECT * FROM tagsByNotes;
+
+-- List tags with associated notes
+SELECT tags.*, notes.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid;
+
+-- List Notes by tag name
+SELECT tags.*, notes.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid
+    WHERE tags.name NOT IN ("inbox", "tag");
+
+-- Only list notes filting by tag name
+SELECT DISTINCT notes.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid
+    WHERE tags.name IN ("notes");
+
+-- list tags per all notes
+SELECT DISTINCT tags.*
+    FROM tag_notes
+    INNER JOIN tags ON tag_notes.tag_id = tags._id
+    INNER JOIN notes ON tag_notes.note_id = notes._id AND tag_notes.dbid = notes.dbid;
